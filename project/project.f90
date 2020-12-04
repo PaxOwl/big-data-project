@@ -1,14 +1,15 @@
-program project
+! project.f90
+program main
 
     implicit none
 
     integer(kind=8) :: io, i, j, nd_nline, nd_node, start_node, end_node
-    character(len=32) :: nd
+    character(len=32) :: datafile
     real(kind=8) :: alpha
     integer(kind=8), allocatable :: network_data(:, :), A(:, :), k_in(:), k_out(:)
     real(kind=8), allocatable :: S(:, :), v(:) , G(:, :)
 
-    nd = "network_data.dat"
+    datafile = "network_data.dat"
     call countLines
 
     allocate(network_data(nd_nline, 2))
@@ -21,7 +22,9 @@ program project
     allocate(S(nd_node, nd_node))
     allocate(v(nd_node))
     allocate(G(nd_node, nd_node))
+
     alpha = .85
+    
     call buildNetworkStructure
     call buildStochasticMatrix
     call buildGoogleMatrix
@@ -33,7 +36,7 @@ program project
 
         implicit none
 
-        open(unit=111, file=nd)
+        open(unit=111, file=datafile)
         nd_nline = 0
 
         do
@@ -53,7 +56,7 @@ program project
 
         implicit none
 
-        open(unit=111, file=nd)
+        open(unit=111, file=datafile)
 
         do i = 1, nd_nline
             read(111, *, iostat=io) network_data(i, 1), network_data(i, 2)
@@ -114,9 +117,9 @@ program project
         implicit none
 
         do i = 1, nd_node
-            v(i) = 1 / nd_node
+            v(i) = 1 / real(nd_node, 8)
             do j = 1, nd_node
-                G(i, j) = alpha * S(i, j) + (1- alpha) * v(i)
+                G(i, j) = alpha * S(i, j) + (1 - alpha) * v(i)
             end do
         end do
 
@@ -132,7 +135,7 @@ program project
         open(unit=222, file="out.dat", iostat=io)
         do i=1, nd_node
             do j=1, nd_node
-                write(unit=222, fmt="(F8.4)", advance='no') G(i, j)
+                write(unit=222, fmt="(F8.4)", advance='no') S(i, j)
             end do
             write(unit=222, fmt="(A4)") ''
         end do
@@ -140,4 +143,4 @@ program project
 
     end subroutine printArray
 
-end program project
+end program main
