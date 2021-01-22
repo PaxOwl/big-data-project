@@ -16,7 +16,7 @@ class NetworkTask1:
         self.ssp = self.steady_state_probability()
         self.k = self.sort_nodes()
 
-    def build_network_structure(self) -> np.ndarray[int, int]:
+    def build_network_structure(self) -> np.ndarray:
 
         structure = np.zeros((self.n_node, self.n_node), dtype=int)
 
@@ -27,7 +27,7 @@ class NetworkTask1:
 
         return structure
 
-    def build_stochastic_matrix(self) -> np.ndarray[float, float]:
+    def build_stochastic_matrix(self) -> np.ndarray:
 
         stochastic = np.zeros((self.n_node, self.n_node), dtype=float)
         k_in = np.zeros((self.n_node, 1), dtype=float)

@@ -6,26 +6,16 @@ class NetworkTask2:
 
     def __init__(self):
 
-        self.data = self.init_data()
+        self.data = np.loadtxt(filename)
         self.n_line = len(self.data)
         self.n_node = self.get_node_number()
         self.structure = self.build_network_structure()
         self.k_in = self.build_degree()[0]
         self.k_out = self.build_degree()[1]
         self.dangling = self.build_dangling()
-        self.stochastic = self.build_stochastic_list()
-        self.google = self.build_google_list()
+        self.stochastic = self.build_stochastic_array()
+        self.google = self.build_google_array()
         self.foo = False
-
-    @staticmethod
-    def init_data() -> list[tuple[int, int]]:
-
-        data = np.loadtxt(filename)
-        new_data = []
-        for i in range(len(data)):
-            new_data.append((int(data[i, 0]), int(data[i, 1])))
-
-        return new_data
 
     def get_node_number(self) -> int:
 
@@ -35,9 +25,9 @@ class NetworkTask2:
                 if j > n_node:
                     n_node = j
 
-        return n_node
+        return int(n_node)
 
-    def build_network_structure(self) -> list[tuple[int, int, int]]:
+    def build_network_structure(self) -> np.ndarray:
 
         structure = []
 
@@ -46,12 +36,12 @@ class NetworkTask2:
             end_node = int(i[1] - 1)
             structure.append((1, end_node, start_node))
 
-        return structure
+        return np.array(structure, dtype=int)
 
-    def build_degree(self) -> tuple[list[int], list[int]]:
+    def build_degree(self) -> tuple[np.ndarray, np.ndarray]:
 
-        k_in = list(np.zeros(self.n_node, dtype=int))
-        k_out = list(np.zeros(self.n_node, dtype=int))
+        k_in = np.zeros(self.n_node, dtype=int)
+        k_out = np.zeros(self.n_node, dtype=int)
 
         for i in range(self.n_node):
             for j in self.structure:
@@ -62,7 +52,7 @@ class NetworkTask2:
 
         return k_in, k_out
 
-    def build_dangling(self) -> list[int]:
+    def build_dangling(self) -> np.ndarray:
 
         dangling = []
 
@@ -70,9 +60,9 @@ class NetworkTask2:
             if self.k_out[i] == 0:
                 dangling.append(i)
 
-        return dangling
+        return np.array(dangling, dtype=int)
 
-    def build_stochastic_list(self) -> list[tuple[float, int, int]]:
+    def build_stochastic_array(self) -> np.ndarray:
 
         stochastic = []
 
@@ -82,13 +72,12 @@ class NetworkTask2:
             for j in range(self.n_node):
                 stochastic.append((1 / self.n_node, j, i))
 
-        return stochastic
+        return np.array(stochastic, dtype=float)
 
-    # def build_google_list(self) -> list[float]:
-    #
-    #     google = []
-    #
-    #
-    #
-    #     return google
+    def build_google_array(self) -> np.ndarray:
 
+        google = []
+
+
+
+        return google
