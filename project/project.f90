@@ -3,11 +3,11 @@ program main
 
     implicit none
 
-    integer(kind=8) :: io, i, j, nd_nline, nd_node, start_node, end_node
+    integer(kind=8) :: io, i, j, nd_nline, nd_node, start_node, end_node, K
     character(len=32) :: datafile
     real(kind=8) :: alpha
     integer(kind=8), allocatable :: network_data(:, :), A(:, :), k_in(:), k_out(:)
-    real(kind=8), allocatable :: S(:, :), v(:) , G(:, :)
+    real(kind=8), allocatable :: S(:, :), v(:) , G(:, :), P(:, :), P0(:, :), tempP(:, :)
 
     datafile = "network_data.dat"
     call countLines
@@ -22,6 +22,9 @@ program main
     allocate(S(nd_node, nd_node))
     allocate(v(nd_node))
     allocate(G(nd_node, nd_node))
+    allocate(P(nd_node, 1))
+    allocate(P0(nd_node, 1))
+    allocate(tempP(nd_node, 1))
 
     alpha = .85
     
@@ -29,7 +32,7 @@ program main
     call buildStochasticMatrix
     call buildGoogleMatrix
 
-    call printArray
+    call saveArray
     contains
 
     subroutine countLines
@@ -108,6 +111,8 @@ program main
                 end if
             end do
         end do
+        print *, k_in
+        print *, k_out
 
     end subroutine buildStochasticMatrix
 
@@ -123,16 +128,14 @@ program main
             end do
         end do
 
-
     end subroutine buildGoogleMatrix
 
 
-
-    subroutine printArray
+    subroutine saveArray
 
         implicit none
 
-        open(unit=222, file="out.dat", iostat=io)
+        open(unit=222, file="S.dat", iostat=io)
         do i=1, nd_node
             do j=1, nd_node
                 write(unit=222, fmt="(F8.4)", advance='no') S(i, j)
@@ -141,6 +144,23 @@ program main
         end do
         close(222)
 
-    end subroutine printArray
+        open(unit=222, file="G.dat", iostat=io)
+        do i=1, nd_node
+            do j=1, nd_node
+                write(unit=222, fmt="(F8.4)", advance='no') G(i, j)
+            end do
+            write(unit=222, fmt="(A4)") ''
+        end do
+        close(222)
+
+        open(unit=222, file="P.dat", iostat=io)
+        do i=1, nd_node
+            write(unit=222, fmt="(F8.4)", advance='no') P(i, 1)
+            write(unit=222, fmt="(A4)") ''
+        end do
+        close(222)
+
+    end subroutine saveArray
+
 
 end program main
