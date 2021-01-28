@@ -61,7 +61,7 @@ class NetworkTask1:
 
     def initial_probability(self, j0) -> np.ndarray:
 
-        p_zero = np.zeros((self.n_node, 1), dtype=int)
+        p_zero = np.zeros(self.n_node, dtype=int)
 
         for i in range(self.n_node):
             p_zero[i] = kronecker(i + 1, j0)
@@ -81,17 +81,17 @@ class NetworkTask1:
             p_temp = np.matmul(self.google, p)
             
             if (abs(p - p_temp) <= epsilon * np.ones((self.n_node, 1))).all():
+                print("Done in {} iterations".format(counter))
                 break
-            elif counter == 10000:
+            elif counter >= 10000:
                 print("Limit reached")
                 break
-
         return p
 
     def sort_nodes(self) -> np.ndarray:
 
         k = np.empty(self.n_node, dtype=int)
-        temp_ssp = self.ssp
+        temp_ssp = self.ssp.copy()
 
         for i in range(self.n_node):
             max = np.max(temp_ssp)

@@ -1,4 +1,6 @@
 import numpy as np
+from collections import Counter
+import time
 from parameters import *
 
 
@@ -6,18 +8,17 @@ class NetworkTask2:
 
     def __init__(self):
 
-        self.data = np.loadtxt(filename)
+        self.data = np.loadtxt(filename, dtype=int)
         self.n_line = len(self.data)
         self.n_node = self.get_node_number()
-        self.structure = self.build_network_structure()
-        self.k_in = self.build_degree()[0]
-        self.k_out = self.build_degree()[1]
+        self.k_out = self.build_degree()
         self.dangling = self.build_dangling()
-        self.stochastic = self.build_stochastic_array()
-        self.google = self.build_google_array()
-        self.foo = False
+        self.p = self.build_gp()
+        self.k = self.sort_nodes()
 
     def get_node_number(self) -> int:
+
+        start = time.time()
 
         n_node = 0
         for i in self.data:
@@ -25,59 +26,82 @@ class NetworkTask2:
                 if j > n_node:
                     n_node = j
 
+        end = time.time()
+        print("Node number retrieved in {:6f} s".format(end - start))
         return int(n_node)
 
-    def build_network_structure(self) -> np.ndarray:
+    def build_degree(self) -> dict:
 
-        structure = []
+        start = time.time()
 
-        for i in self.data:
-            start_node = int(i[0] - 1)
-            end_node = int(i[1] - 1)
-            structure.append((1, end_node, start_node))
+        k_out = Counter(self.data[:, 0])
 
-        return np.array(structure, dtype=int)
-
-    def build_degree(self) -> tuple[np.ndarray, np.ndarray]:
-
-        k_in = np.zeros(self.n_node, dtype=int)
-        k_out = np.zeros(self.n_node, dtype=int)
-
-        for i in range(self.n_node):
-            for j in self.structure:
-                if j[2] == i:
-                    k_out[i] += 1
-                if j[1] == i:
-                    k_in[i] += 1
-
-        return k_in, k_out
+        end = time.time()
+        print("k_out built in {:.6f} s".format(end - start))
+        return dict(k_out)
 
     def build_dangling(self) -> np.ndarray:
 
+        start = time.time()
         dangling = []
 
         for i in range(self.n_node):
-            if self.k_out[i] == 0:
-                dangling.append(i)
+            if i + 1 not in set(self.k_out):
+                dangling.append(i + 1)
 
+        end = time.time()
+        print("dangling nodes array built in {:.6f} s".format(end-start))
         return np.array(dangling, dtype=int)
 
-    def build_stochastic_array(self) -> np.ndarray:
+    def build_gp(self) -> np.ndarray:
 
-        stochastic = []
+        start = time.time()
 
-        for i in self.structure:
-            stochastic.append((1 / self.k_out[i[2]], i[1], i[2]))
-        for i in self.dangling:
+        epsilon = 10 ** (-4)
+        new_p = np.array([1 / self.n_node for _ in range(self.n_node)],
+                         dtype=float)
+        gp = np.zeros(self.n_node, dtype=float)
+
+        counter = 0
+        while True:
+            counter += 1
+            p = new_p.copy()
+            for i in self.data:
+                gp[i[1] - 1] += alpha * p[i[0] - 1] / self.k_out[i[0]]
+
+            for i in self.dangling:
+                gp[i - 1] += alpha * p[i - 1] / self.n_node
+
+            for i in range(self.n_node):
+                gp[i] += (1 - alpha) / self.n_node
+                new_p[i] = gp[i] / np.linalg.norm(gp, 1)
+            if np.linalg.norm(new_p - p) < epsilon:
+                print("Done in {} iterations".format(counter))
+                break
+            elif counter >= 1000:
+                print("Limit reached")
+                break
+
+        end = time.time()
+        print("Steady state probability array built "
+              "in {:.6f} s".format(end - start))
+        return p
+
+    def sort_nodes(self) -> np.ndarray:
+
+        start = time.time()
+
+        k = np.empty(self.n_node, dtype=int)
+        temp_ssp = self.p.copy()
+
+        for i in range(self.n_node):
+            max = np.max(temp_ssp)
+
             for j in range(self.n_node):
-                stochastic.append((1 / self.n_node, j, i))
+                if max == temp_ssp[j]:
+                    k[j] = i + 1
+                    temp_ssp[j] = 0
 
-        return np.array(stochastic, dtype=float)
-
-    def build_google_array(self) -> np.ndarray:
-
-        google = []
-
-
-
-        return google
+        end = time.time()
+        print("Array sorted in {:.6f} s".format(end - start))
+        return k
