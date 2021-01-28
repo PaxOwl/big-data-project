@@ -23,6 +23,11 @@ t_end = time.time()
 print("Elapsed time for part 2: {:.6f} seconds.".format(t_end - t_init))
 print("The ranking for the input data is as follows:")
 print("Node", "Rank")
-for i in range(10):
+for i in range(network2.n_node):
     print(i + 1, '  ', network2.k[i])
+    if i == 9:
+        break
 
+# print(network1.ssp)
+# print(network2.p)
+# print(np.abs(network1.ssp - network2.p))

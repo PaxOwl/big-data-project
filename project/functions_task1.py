@@ -6,7 +6,7 @@ class NetworkTask1:
 
     def __init__(self):
 
-        self.data = np.loadtxt(filename)
+        self.data = np.loadtxt("data/" + filename + ".txt")
         self.n_line = len(self.data)
         self.n_node = int(np.max(self.data))
         self.structure = self.build_network_structure()
@@ -70,7 +70,7 @@ class NetworkTask1:
 
     def steady_state_probability(self) -> np.ndarray:
 
-        epsilon = 10**(-16)
+        epsilon = 10**(-4)
 
         p_temp = self.p_zero
         counter = 0
