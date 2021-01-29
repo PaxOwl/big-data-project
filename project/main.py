@@ -41,7 +41,7 @@ else:
     #          "thwiki", "trwiki", "viwiki", "zhwiki"]
     files = ["network_data", "network_data2", "network_data3", "network_data4"]
     for f in files:
-        with open(f + ".dat", "a") as log:
+        with open("data_out/" + f + ".log", "a") as log:
             filename = f
             t_start = time.time()
             start_string = "Started computation for {}".format(f)
