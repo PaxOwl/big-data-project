@@ -3,11 +3,10 @@
 import functions_task1 as fc1
 import functions_task2 as fc2
 import time
-from parameters import run_all_files
+from parameters2 import run_all_files, files
 
 
 if not run_all_files:
-    filename = "network_data"
     print("---------- Part 1 ----------")
     t_init = time.time()
     network1 = fc1.NetworkTask1()
@@ -39,17 +38,17 @@ else:
     #          "jawiki", "kowiki", "mswiki", "nlwiki",
     #          "plwiki", "ptwiki", "ruwiki", "svwiki",
     #          "thwiki", "trwiki", "viwiki", "zhwiki"]
-    files = ["network_data", "network_data2", "network_data3", "network_data4"]
     for f in files:
-        with open("data_out/" + f + ".log", "a") as log:
-            filename = f
+        with open("data_out/" + f + ".log", "w") as logfile:
             t_start = time.time()
             start_string = "Started computation for {}".format(f)
             print(start_string)
-            log.write(start_string)
+            logfile.write(start_string)
             data = fc2.NetworkTask2()
+            data.compute(f)
+            logfile.write(data.log)
             t_end = time.time()
             end_string = "Computation ended for {}. " \
-                         "Time elapsed: {} s".format(filename, t_end - t_start)
+                         "Time elapsed: {} s".format(f, t_end - t_start)
             print(end_string)
-            log.write(end_string)
+            logfile.write(end_string)

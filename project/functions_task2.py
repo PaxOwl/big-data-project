@@ -1,25 +1,35 @@
 import numpy as np
 from collections import Counter
 import time
-from parameters import *
-from main import filename, log
+from parameters2 import *
 
 
 class NetworkTask2:
 
     def __init__(self):
 
-        self.data, self.n_line, self.n_node = self.load_data()
+        self.data = None
+        self.n_line = None
+        self.n_node = None
+        self.k_out = None
+        self.dangling = None
+        self.p = None
+        self.k = None
+        self.log = ""
+
+    def compute(self, filename):
+
+        self.data, self.n_line, self.n_node = self.load_data(filename)
         self.k_out = self.build_degree()
         self.dangling = self.build_dangling()
         self.p = self.build_gp()
-        self.k = self.build_index()
+        self.k = self.build_index(filename)
 
-    def load_data(self) -> int:
+    def load_data(self, filename) -> tuple[np.ndarray, int, int]:
 
         start = time.time()
         data = np.loadtxt("data/" + filename + ".txt", dtype=int)
-        n_line = len(self.data)
+        n_line = len(data)
 
         n_node = 0
         for i in data:
@@ -29,9 +39,9 @@ class NetworkTask2:
 
         end = time.time()
 
-        log_string = "Data loaded in {:4f} s".format(end - start)
+        log_string = "\nData loaded in {:4f} s".format(end - start)
         print(log_string)
-        log.write(log_string)
+        self.log = self.log + log_string
 
         return data, int(n_line), int(n_node)
 
@@ -42,9 +52,9 @@ class NetworkTask2:
         k_out = Counter(self.data[:, 0])
 
         end = time.time()
-        log_string = "k_out built in {:.6f} s".format(end - start)
+        log_string = "\nk_out built in {:.6f} s".format(end - start)
         print(log_string)
-        log.write(log_string)
+        self.log = self.log + log_string
 
         return dict(k_out)
 
@@ -60,10 +70,10 @@ class NetworkTask2:
 
         end = time.time()
 
-        log_string = "Dangling nodes array built in " \
+        log_string = "\nDangling nodes array built in " \
                      "{:.6f} ms".format(100 * (end - start))
         print(log_string)
-        log.write(log_string)
+        self.log = self.log + log_string
 
         return np.array(dangling, dtype=int)
 
@@ -91,21 +101,21 @@ class NetworkTask2:
             gp = gp / np.linalg.norm(gp, 1)
 
             if np.linalg.norm(gp - p) < epsilon:
-                print("Done in {} iterations".format(counter))
+                print("\nDone in {} iterations".format(counter))
                 break
             elif counter >= 1000:
                 print("Limit reached")
                 break
 
         end = time.time()
-        log_string = "Steady state probability array built " \
+        log_string = "\nSteady state probability array built " \
                      "in {:.6f} s".format(end - start)
         print(log_string)
-        log.write(log_string)
+        self.log = self.log + log_string
 
         return p
 
-    def build_index(self) -> np.ndarray:
+    def build_index(self, filename) -> np.ndarray:
 
         start = time.time()
 
@@ -121,9 +131,9 @@ class NetworkTask2:
             k['rank'][i] = i + 1
 
         end = time.time()
-        log_string = "Array sorted in {:.6f} s".format(end - start)
+        log_string = "\nArray sorted in {:.6f} s".format(end - start)
         print(log_string)
-        log.wite(log_string)
+        self.log = self.log + log_string
 
         dtype = [('node', 'int'), ('rank', 'int')]
         k = np.array(k, dtype=dtype)

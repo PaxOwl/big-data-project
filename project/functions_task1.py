@@ -1,6 +1,5 @@
 import numpy as np
-from parameters import *
-from main import filename
+from parameters1 import *
 
 
 class NetworkTask1:
