@@ -22,7 +22,7 @@ class NetworkTask2:
         self.data, self.n_line, self.n_node = self.load_data(filename)
         self.k_out = self.build_degree()
         self.dangling = self.build_dangling()
-        self.p = self.build_gp()
+        self.p = self.build_gp(filename)
         self.k = self.build_index(filename)
 
     def load_data(self, filename) -> tuple[np.ndarray, int, int]:
@@ -39,7 +39,7 @@ class NetworkTask2:
 
         end = time.time()
 
-        log_string = "\nData loaded in {:4f} s".format(end - start)
+        log_string = "\nData loaded in {:.4f} s".format(end - start)
         print(log_string)
         self.log = self.log + log_string
 
@@ -52,7 +52,7 @@ class NetworkTask2:
         k_out = Counter(self.data[:, 0])
 
         end = time.time()
-        log_string = "\nk_out built in {:.6f} s".format(end - start)
+        log_string = "\nk_out built in {:.4f} ms".format(1000 * (end - start))
         print(log_string)
         self.log = self.log + log_string
 
@@ -71,13 +71,13 @@ class NetworkTask2:
         end = time.time()
 
         log_string = "\nDangling nodes array built in " \
-                     "{:.6f} ms".format(100 * (end - start))
+                     "{:.4f} ms".format(1000 * (end - start))
         print(log_string)
         self.log = self.log + log_string
 
         return np.array(dangling, dtype=int)
 
-    def build_gp(self) -> np.ndarray:
+    def build_gp(self, filename) -> np.ndarray:
 
         start = time.time()
 
@@ -88,7 +88,7 @@ class NetworkTask2:
         counter = 0
         while True:
             counter += 1
-
+            print("{}: iteration {}".format(filename, counter))
             p = gp.copy()
             for i in self.data:
                 gp[i[1] - 1] += alpha * p[i[0] - 1] / self.k_out[i[0]]
@@ -109,7 +109,7 @@ class NetworkTask2:
 
         end = time.time()
         log_string = "\nSteady state probability array built " \
-                     "in {:.6f} s".format(end - start)
+                     "in {:.4f} s".format(end - start)
         print(log_string)
         self.log = self.log + log_string
 
@@ -131,7 +131,7 @@ class NetworkTask2:
             k['rank'][i] = i + 1
 
         end = time.time()
-        log_string = "\nArray sorted in {:.6f} s".format(end - start)
+        log_string = "\nArray sorted in {:.4f} ms".format(1000 * (end - start))
         print(log_string)
         self.log = self.log + log_string
 
