@@ -86,9 +86,12 @@ class NetworkTask2:
                       dtype=float)
 
         counter = 0
+        t_init = time.time()
         while True:
             counter += 1
-            print("{}: iteration {}".format(filename, counter))
+            t_iter = time.time()
+            print("{}: iteration {}, {} s".format(filename, counter,
+                                                  t_iter - t_init))
             p = gp.copy()
             for i in self.data:
                 gp[i[1] - 1] += alpha * p[i[0] - 1] / self.k_out[i[0]]

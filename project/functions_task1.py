@@ -94,12 +94,11 @@ class NetworkTask1:
         temp_ssp = self.ssp.copy()
 
         for i in range(self.n_node):
-            max = np.max(temp_ssp)
-
+            counter = 1
             for j in range(self.n_node):
-                if max == temp_ssp[j]:
-                    k[j] = i + 1
-                    temp_ssp[j] = 0
+                if temp_ssp[i] < temp_ssp[j]:
+                    counter += 1
+            k[i] = counter
 
         return k
 

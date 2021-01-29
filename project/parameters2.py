@@ -1,6 +1,4 @@
-alpha = .85
-j0 = 1
-run_all_files = True
+run_all_files = False
 files = ["arwiki", "dawiki", "dewiki", "elwiki",
          "enwiki", "eswiki", "fawiki", "frwiki",
          "hewiki", "hiwiki", "huwiki", "itwiki",
