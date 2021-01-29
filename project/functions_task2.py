@@ -72,11 +72,10 @@ class NetworkTask2:
             for i in self.data:
                 gp[i[1] - 1] += alpha * p[i[0] - 1] / self.k_out[i[0]]
 
-            for i in range(self.n_node):
-                gp[i] += (1 - alpha) / self.n_node
-
             for i in self.dangling:
                 gp += alpha * p[i - 1] / self.n_node
+
+            gp += (1 - alpha) / self.n_node
 
             gp = gp / np.linalg.norm(gp, 1)
 
