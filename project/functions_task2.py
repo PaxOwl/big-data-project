@@ -14,7 +14,7 @@ class NetworkTask2:
         self.k_out = self.build_degree()
         self.dangling = self.build_dangling()
         self.p = self.build_gp()
-        self.k = self.sort_nodes()
+        self.k = self.build_index()
 
     def get_node_number(self) -> int:
 
@@ -61,7 +61,7 @@ class NetworkTask2:
 
         start = time.time()
 
-        epsilon = 10 ** (-6)
+        epsilon = 10 ** (-4)
         gp = np.array([1 / self.n_node for _ in range(self.n_node)],
                       dtype=float)
 
@@ -93,28 +93,34 @@ class NetworkTask2:
 
         return p
 
-    def sort_nodes(self) -> np.ndarray:
+    def build_index(self) -> np.ndarray:
 
         start = time.time()
 
-        k = np.empty(self.n_node, dtype=int)
+        dtype = [('node', int), ('rank', float)]
+        k = []
 
         for i in range(self.n_node):
-            counter = 0
-            for j in self.p:
-                if self.p[i] < j:
-                    counter += 1
-            k[i] = 1 + counter
+            k.append((i + 1, self.p[i]))
+
+        k = np.array([tuple(row) for row in k], dtype=dtype)
+        k = np.flip(np.sort(k, order='rank'))
+        for i in range(self.n_node):
+            k['rank'][i] = i + 1
+
+        # for i in range(self.n_node):
+        #     counter = 0
+        #     for j in self.p:
+        #         if self.p[i] < j:
+        #             counter += 1
+        #     k[i] = 1 + counter
 
         end = time.time()
         print("Array sorted in {:.6f} s".format(end - start))
 
-        out = np.empty((self.n_node + 1, 2))
+        dtype = [('node', 'int'), ('rank', 'int')]
+        k = np.array(k, dtype=dtype)
 
-        for i in range(self.n_node):
-            out[i, 0] = i + 1
-            out[i, 1] = k[i]
-
-        np.savetxt(filename + "_out.dat", out, fmt='%i')
+        np.savetxt(filename + "_out.dat", k, fmt='%i')
 
         return k

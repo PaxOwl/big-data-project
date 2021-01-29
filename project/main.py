@@ -15,6 +15,8 @@ import numpy as np
 # print("Node", "Rank")
 # for i in range(network1.n_node):
 #     print(i + 1, '  ', network1.k[i])
+#
+# print(network1.ssp)
 
 print("\n---------- Part 2 ----------")
 t_init = time.time()
@@ -24,7 +26,7 @@ print("Elapsed time for part 2: {:.6f} seconds.".format(t_end - t_init))
 print("The ranking for the input data is as follows:")
 print("Node", "Rank")
 for i in range(network2.n_node):
-    print(i + 1, '  ', network2.k[i])
+    print(network2.k['node'][i], '  ', network2.k['rank'][i])
     if i == 9:
         break
 
