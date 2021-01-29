@@ -32,12 +32,6 @@ if not run_all_files:
             break
 
 else:
-    # files = ["arwiki", "dawiki", "dewiki", "elwiki",
-    #          "enwiki", "eswiki", "fawiki", "frwiki",
-    #          "hewiki", "hiwiki", "huwiki", "itwiki",
-    #          "jawiki", "kowiki", "mswiki", "nlwiki",
-    #          "plwiki", "ptwiki", "ruwiki", "svwiki",
-    #          "thwiki", "trwiki", "viwiki", "zhwiki"]
     for f in files:
         with open("data_out/" + f + ".log", "w") as logfile:
             t_start = time.time()
