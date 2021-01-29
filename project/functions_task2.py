@@ -61,13 +61,14 @@ class NetworkTask2:
 
         start = time.time()
 
-        epsilon = 10 ** (-4)
+        epsilon = 10 ** (-6)
         gp = np.array([1 / self.n_node for _ in range(self.n_node)],
                       dtype=float)
 
         counter = 0
         while True:
             counter += 1
+
             p = gp.copy()
             for i in self.data:
                 gp[i[1] - 1] += alpha * p[i[0] - 1] / self.k_out[i[0]]
@@ -108,7 +109,7 @@ class NetworkTask2:
         end = time.time()
         print("Array sorted in {:.6f} s".format(end - start))
 
-        out = np.empty((self.n_node, 2), dtype=int)
+        out = np.empty((self.n_node + 1, 2))
 
         for i in range(self.n_node):
             out[i, 0] = i + 1
