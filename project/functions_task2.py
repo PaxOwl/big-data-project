@@ -39,7 +39,7 @@ class NetworkTask2:
 
         end = time.time()
 
-        log_string = "Data loaded in {:.4f} s".format(end - start)
+        log_string = "\nData loaded in {:.4f} s".format(end - start)
         print(log_string)
         self.log = self.log + log_string
 
@@ -52,7 +52,7 @@ class NetworkTask2:
         k_out = Counter(self.data[:, 0])
 
         end = time.time()
-        log_string = "k_out built in {:.4f} ms".format(1000 * (end - start))
+        log_string = "\nk_out built in {:.4f} ms".format(1000 * (end - start))
         print(log_string)
         self.log = self.log + log_string
 
@@ -70,7 +70,7 @@ class NetworkTask2:
 
         end = time.time()
 
-        log_string = "Dangling nodes array built in " \
+        log_string = "\nDangling nodes array built in " \
                      "{:.4f} ms".format(1000 * (end - start))
         print(log_string)
         self.log = self.log + log_string
@@ -108,7 +108,7 @@ class NetworkTask2:
                 break
 
         end = time.time()
-        log_string = "Steady state probability array built " \
+        log_string = "\nSteady state probability array built " \
                      "in {:.4f} s, {} iterations".format(end - start, counter)
         print(log_string)
         self.log = self.log + log_string
@@ -131,7 +131,7 @@ class NetworkTask2:
             k['rank'][i] = i + 1
 
         end = time.time()
-        log_string = "Array sorted in {:.4f} ms".format(1000 * (end - start))
+        log_string = "\nArray sorted in {:.4f} ms".format(1000 * (end - start))
         print(log_string)
         self.log = self.log + log_string
 
