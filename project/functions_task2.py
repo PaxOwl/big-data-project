@@ -7,29 +7,39 @@ from parameters2 import *
 class NetworkTask2:
 
     def __init__(self):
-
+        """
+        Initiates the data
+        """
         self.data = None
         self.n_line = None
         self.n_node = None
         self.k_out = None
         self.dangling = None
-        self.p = None
+        self.ssp = None
         self.k = None
         self.log = ""
 
-    def compute(self, filename):
+    def compute(self, filename: str):
+        """
+        Calls the different functions to compute the attributes of the class
 
-        self.data, self.n_line, self.n_node = self.load_data(filename)
+        :param filename: Name of the file to use
+        """
+        self.data, self.n_node = self.load_data(filename)
         self.k_out = self.build_degree()
         self.dangling = self.build_dangling()
-        self.p = self.build_gp(filename)
+        self.ssp = self.build_p(filename)
         self.k = self.build_index(filename)
 
-    def load_data(self, filename) -> tuple[np.ndarray, int, int]:
+    def load_data(self, filename: str) -> tuple[np.ndarray, int]:
+        """
+        Reads the input file and stores its data in an array
 
+        :param filename: Name of the file to use
+        :return: Data of the input file and number of nodes
+        """
         start = time.time()
         data = np.loadtxt("data/" + filename + ".txt", dtype=int)
-        n_line = len(data)
 
         n_node = 0
         for i in data:
@@ -43,10 +53,14 @@ class NetworkTask2:
         print(log_string)
         self.log = self.log + log_string
 
-        return data, int(n_line), int(n_node)
+        return data, int(n_node)
 
     def build_degree(self) -> dict:
+        """
+        Builds the dictionary of ways out for each node
 
+        :return: The number of ways out for each node
+        """
         start = time.time()
 
         k_out = Counter(self.data[:, 0])
@@ -59,7 +73,11 @@ class NetworkTask2:
         return dict(k_out)
 
     def build_dangling(self) -> np.ndarray:
+        """
+        Using the dictionary k_out, builds the array of dangling nodes
 
+        :return: Array containing all the dangling nodes of the network
+        """
         start = time.time()
         dangling = []
         dang = set(self.k_out)
@@ -77,8 +95,13 @@ class NetworkTask2:
 
         return np.array(dangling, dtype=int)
 
-    def build_gp(self, filename) -> np.ndarray:
+    def build_p(self, filename: str) -> np.ndarray:
+        """
+        Builds the steady state probability list of the network
 
+        :param filename: Name of the file to use
+        :return: Steady state probability array
+        """
         start = time.time()
 
         gp = np.array([1 / self.n_node for _ in range(self.n_node)],
@@ -117,15 +140,21 @@ class NetworkTask2:
 
         return p
 
-    def build_index(self, filename) -> np.ndarray:
+    def build_index(self, filename: str) -> np.ndarray:
+        """
+        Sorts and ranks the nodes given the steady state probability array
+        self.ssp
 
+        :param filename: Name of the file to use
+        :return: Nodes of the network with associated rank
+        """
         start = time.time()
 
         dtype = [('node', int), ('rank', float)]
         k = []
 
         for i in range(self.n_node):
-            k.append((i + 1, self.p[i]))
+            k.append((i + 1, self.ssp[i]))
 
         k = np.array([tuple(row) for row in k], dtype=dtype)
         k = np.flip(np.sort(k, order='rank'))

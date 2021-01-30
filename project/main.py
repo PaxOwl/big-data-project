@@ -4,8 +4,10 @@ import functions_task1 as fc1
 import functions_task2 as fc2
 import time
 from parameters1 import *
-from parameters2 import run_all_files, files
+from parameters2 import files
 
+
+run_all_files = False
 
 if not run_all_files:
     print("---------- Part 1 ----------")
@@ -17,6 +19,8 @@ if not run_all_files:
     print("Node", "Rank")
     for i in range(network1.n_node):
         print(i + 1, '  ', network1.k[i])
+    with open("prob.dat", "a") as prob:
+        prob.write(str(network1.ssp) + " " + str(alpha) + "\n")
 
     print(network1.ssp)
 
@@ -32,6 +36,8 @@ if not run_all_files:
         print(network2.k['node'][i], '  ', network2.k['rank'][i])
         if i == 9:
             break
+    print(network1.ssp)
+    print(network2.ssp)
 
 else:
     with open("data_out/logs.log", "w") as general_log:
