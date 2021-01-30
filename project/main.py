@@ -35,7 +35,8 @@ if not run_all_files:
 
 else:
     with open("data_out/logs.log", "w") as general_log:
-        general_log.write("Starting computations at {}\n".format(time.time()))
+        general_log.write("Starting computations at "
+                          "{}\n".format(time.strftime("%H:%M")))
         for f in files:
             with open("data_out/" + f + ".log", "w") as logfile:
                 t_start = time.time()
@@ -53,4 +54,5 @@ else:
                 print(end_string)
                 general_log.write(end_string)
                 logfile.write(end_string)
-        general_log.write("Computations ended at {}".format(time.time()))
+        general_log.write("Computations ended at "
+                          "{}".format(time.strftime("%H:%M")))
