@@ -1,12 +1,18 @@
 \subsection*{Disclaimer}
 In this report, I adopt a writing convention:
 \begin{itemize}
-    \item Filename are in \textit{italic}
+    \item Filenames are in \textit{italic}
     \item Any value, variable, string, object ... is in \textbf{boldface} 
 \end{itemize}
 Please note that the output files are quite big, I will provide the first ten results of each language in the report, the complete list of results will be available on the \href{https://github.com/PaxOwl/big-data-project}{github page} of this project in \textit{project/data\_out/}.
 \section{Introduction}
+In the late 90's, several search engine were in competition about speed and efficiency. In 1998, Larry Page and Sergey Brin put an end to the race with the PageRank algorithm and their search engine: Google. This algorithm makes use of the hyperlinks between the pages. It assigns a score to a page depending on the number of times a user could go to the page by clicking on random links. It is a measure of the centrality of the web.
 
+In this work we will look into 2 approach for this algorithm: the matrix approach which is the resolution of an eigenproblem, and an approach using the power iteration methods.
+
+This algorithm will be tested to rank all the pages of Wikipedia in 2013 (separated by language) in 24 different languages. It could then lead to a study about the rank of a page in different languages.
+
+The CPU will be monitored at all time during the computation to keep a precise track of what task is fast/slow and where to improve the code.
 \newpage
 \section{Task 1}
 \label{sec:task1}
@@ -45,7 +51,7 @@ Once the adjacency matrix is build, we need the stochastic matrix:
         1 / N & \text{otherwise} 
     \end{array} \right. \text{ with } k_j^{\text{out}} = \displaystyle\sum_{i=1}^{N} A_{ij}
 \end{equation}
-The out-degree $k_j^{\text{out}}$ corresponds to the number of vertices to leave the vertex $j$. An element $S_{ij}$ of the stochastic matrix corresponds to the probability of jumping from node $i$ to node $j$. The second part in the definition od $S$ is there is case we end up on a node without any escape ($k_{\text{out}} = 0$). In that case we have a probability $1/N$ of jumping into any node of the network.
+The out-degree $k_j^{\text{out}}$ corresponds to the number of vertices to leave the vertex $j$. An element $S_{ij}$ of the stochastic matrix corresponds to the probability of jumping from node $i$ to node $j$. The second part in the definition of $S$ in case we end up on a node without any way out ($k_{\text{out}} = 0$). In that case we have a probability $1/N$ of jumping into any node of the network.
 
 The out-degree $k^{\text{out}}$ and the stochastic matrix $S$ of the considered graph are:
 \[  
@@ -140,9 +146,9 @@ After solving the eigenproblem, the results are as follows:
     \end{minipage}
 \end{table}
 
-Looking at \autoref{tab:alpha}, the action of the damping factor $\alpha$ on the calculation of the steady state probability is clear. As $\alpha$ increases, the values for the first 3 nodes decreases while the values of the last 3 nodes increases. By taking into consideration the damping factor in the computations, we prevent the program to stuck itself on a the last 3 nodes, therefore producing more accurate results.
+Looking at \autoref{tab:alpha}, the action of the damping factor $\alpha$ on the calculation of the steady state probability is clear. As $\alpha$ increases, the values for the first 3 nodes decreases while the values of the last 3 nodes increases. By taking into consideration the damping factor in the computations, we prevent the program to stuck itself on the last 3 nodes, therefore producing more accurate results.
 \section{Task 2}
-The approach of the adjacency matrix we saw in \autoref{sec:task1} is satisfying for small networks. However, with a network or several thousand nodes, solving for the eigenvalues of a matrix is not a conceivable method, the computation time and the load on the memory would be to high. A new method is needed, the power iteration method.
+The approach of the adjacency matrix we saw in \autoref{sec:task1} is satisfying for small networks. However, with a network of several thousand nodes, solving for the eigenvalues of a matrix is not a conceivable method, the computation time and the load on the memory would be tremendous. A new method is needed, the power iteration method.
 
 \subsection{About the program}
     In order to build a PageRank algorithm using the power iteration method, I choosed to use object oriented programming. My program is composed of multiple files:
@@ -153,6 +159,16 @@ The approach of the adjacency matrix we saw in \autoref{sec:task1} is satisfying
         \item \textit{function\_task1.py}: Contains the \textbf{class} \textbf{NetworkTask1} that computes the rank using the adjacency matrix method
         \item \textit{function\_task2.py}: Contains the \textbf{class} \textbf{NetworkTask2} that computes the rank using the power iteration method
     \end{itemize}
+
+\subsection{How to use the program}
+There are several criteria to meet for the program to work:
+\begin{itemize}
+    \item All the \textit{*.py} files should be in the same directory
+    \item There should be 2 directories in the same directory as the \textit{*.py} files: \textit{data/} where the input data files are stored and \textit{data\_out/} where the output files and logs are created.
+    \item You can choose which file to use in the computation by adding/removing names (without the extension) in the variable \textbf{files} in \textit{parameters2.py}
+    \item The program is made to load \textit{*.txt} files, if the extension is different it will not work. You can change this behavior by modifying the code where it loads the file (line 11 for \textit{function\_task1} and line 42 for \textit{function\_task2})
+\end{itemize}
+If all these conditions are met, the program should work like a charm. Set the variable \textbf{run\_all\_files} to \textbf{True} or \textbf{False} depending on what you want to do and execute the file \textit{main.py} in a terminal.
 
 \subsection{\textit{main.py}}
 This file is made of 2 parts, depending on the value of \textbf{run\_all\_files} (bool) of \textit{main.py}.
@@ -169,7 +185,7 @@ This file contains the constants to use for the task 2:
     \item The list of files to use \textbf{files}
 \end{itemize}
 
-\subsection{functions\_task2.py}
+\subsection{\textit{functions\_task2.py}}
 This is the core of the program, where all the computations are made.
 
 I start by defining a \textbf{class} \textbf{NetworkTask2} which is kind of a ``storage'' for all the values of the network.
@@ -236,6 +252,7 @@ It works by using the function \textbf{Counter()} of the package \textbf{collect
 
 \mintinline{python}{{node1: occurence, node2: occurence, ..., nodeN: occurence}}
 
+\newpage
 \subsubsection{\textbf{build\_dangling}}
 This function store the number associated to each dangling node (node without any way to leave).
 
@@ -252,7 +269,7 @@ This function store the number associated to each dangling node (node without an
     \caption{\textbf{build\_degree} function variables}\label{tab:build-dangling}
 \end{table}
 
-It makes use of the dictionary \textbf{k\_out} and the number of nodes to build \textbf{k\_out}. The function iterates on the number of nodes and checks if there is an entry for the current node. If there is none, it appends the current node to the list dangling.
+It makes use of the dictionary \textbf{k\_out} and the number of nodes to build \textbf{k\_out}. The function iterates on the number of nodes and checks if there is an entry for the current node. If there is none, it appends the current node to the list \textbf{dangling}.
 
 \subsubsection{\textbf{build\_p}}
 This function computes the steady state probability \textbf{p} of each node.
@@ -348,6 +365,7 @@ The ranks are totally identical while the probabilities are only identical up to
 \section{Task 3}
 Now that we have a full-functional algorithm to compute the PageRank, it is time to use it on real data. We have a list of files containing the hyperlinks between the Wikipedia pages of 24 languages. We are interested in the first 10 pages of each language, a comparison of the rank of the same page in different language and the evolution of the CPU time needed in function of the number of links.
 
+\newpage
 \subsection{Top 10 articles}
 \begin{table}[htbp]
     \begin{minipage}{.45\linewidth}
@@ -867,4 +885,58 @@ Now that we have a full-functional algorithm to compute the PageRank, it is time
     \end{minipage}
 \end{table}
 
+\newpage
+On the top 10 articles of the languages I could understand/search, there are a lot of countries in the higher ranks of the pages. Most of the time it corresponds to the USA and major Europeean countries (France, Germany, Spain, Italy, United-Kingdom). The results also show that each language has among high ranks pages linked to the country where the language is spoken (most of the time it is cities or historical events). These results are logical to me, therefore the algorithm seems quite effective at ranking the pages.
+\subsection{Page rank comparison}
+\begin{table}[htbp]
+    \begin{minipage}{.45\linewidth}
+        \centering
+        \begin{tabular}{ll}
+            \toprule
+            Language & Rank\\
+            \midrule
+            French & 11279\\
+            English & 59219\\
+            German & 27547\\
+            Italian & 45702\\
+            Portuguese & 16379\\
+            \bottomrule
+        \end{tabular}
+        \caption{Statistical Physics for 5 different languages}\label{tab:stp}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{.45\linewidth}
+        \centering
+        \begin{tabular}{ll}
+            \toprule
+            Language & Rank\\
+            \midrule
+            French & 42278\\
+            English & 144060\\
+            German & 178599\\
+            Italian & 9982\\
+            Spanish & 52398\\
+            \bottomrule
+        \end{tabular}
+        \caption{Analytical mechanics for 5 different languages}\label{tab:anm}
+    \end{minipage}
+\end{table}
+These tables seem in contradiction. \autoref{tab:stp} shows that the results of a page in different languages could be quite close, however \autoref{tab:anm} shows that the results could also be relatively sparse. It is also important to consider the fact that there is not the same number of pages for each language, for example, there is no page for Statistical Physics in the Spanish edition and no page for Analytical Mechanics in the Portuguese edition. 
+
+\newpage
+\subsection{CPU time}
+As this program need to manipulate a lot of data, the time needed by the CPU to compute all the results is a matter worth considering.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.8\linewidth]{project/graph.pdf}
+    \caption{CPU time in function of the number of links}
+\end{figure}
+
+There is an linear link between the number of links and the CPU time needed to compute the ranks. If we were to compute more data, the relation link/CPU time should follow this model.
 \section{Conclusion}
+In this project, the PageRank algorithm proved to be quite efficient. The results are satisfying despite a really long computation time.
+
+There are several points that can be improved regarding the code:
+
+As I used python, making use of the module \textbf{pandas} would have been faster to manipulate this amount of data. Python is also a slow language, reproducing the same code in fortran should be faster.
