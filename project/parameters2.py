@@ -1,4 +1,4 @@
-run_all_files = False
+run_all_files = True
 alpha = 0.85
 files = ["arwiki", "dawiki", "dewiki", "elwiki",
          "enwiki", "eswiki", "fawiki", "frwiki",
