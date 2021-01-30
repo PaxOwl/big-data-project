@@ -81,7 +81,7 @@ class NetworkTask2:
 
         start = time.time()
 
-        epsilon = 10 ** (-4)
+        epsilon = 10 ** (-8)
         gp = np.array([1 / self.n_node for _ in range(self.n_node)],
                       dtype=float)
 
