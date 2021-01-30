@@ -34,17 +34,23 @@ if not run_all_files:
             break
 
 else:
-    for f in files:
-        with open("data_out/" + f + ".log", "w") as logfile:
-            t_start = time.time()
-            start_string = "Started computation for {}".format(f)
-            print(start_string)
-            logfile.write(start_string)
-            data = fc2.NetworkTask2()
-            data.compute(f)
-            logfile.write(data.log)
-            t_end = time.time()
-            end_string = "\nComputation ended for {}. " \
-                         "Time elapsed: {:.4} s".format(f, t_end - t_start)
-            print(end_string)
-            logfile.write(end_string)
+    with open("data_out/logs.log", "w") as general_log:
+        general_log.write("Starting computations at {}\n".format(time.time()))
+        for f in files:
+            with open("data_out/" + f + ".log", "w") as logfile:
+                t_start = time.time()
+                start_string = "Started computation for {}".format(f)
+                print(start_string)
+                general_log.write("\n" + start_string)
+                logfile.write(start_string)
+                data = fc2.NetworkTask2()
+                data.compute(f)
+                general_log.write(data.log)
+                logfile.write(data.log)
+                t_end = time.time()
+                end_string = "\nComputation ended for {}. " \
+                             "Time elapsed: {:.4} s".format(f, t_end - t_start)
+                print(end_string)
+                general_log.write(end_string)
+                logfile.write(end_string)
+        general_log.write("Computations ended at {}".format(time.time()))

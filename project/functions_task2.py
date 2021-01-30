@@ -81,7 +81,6 @@ class NetworkTask2:
 
         start = time.time()
 
-        epsilon = 10 ** (-8)
         gp = np.array([1 / self.n_node for _ in range(self.n_node)],
                       dtype=float)
 
@@ -90,8 +89,8 @@ class NetworkTask2:
         while True:
             counter += 1
             t_iter = time.time()
-            print("{}: iteration {}, {} s".format(filename, counter,
-                                                  t_iter - t_init))
+            print("{}: iteration {}, {:.4f} s".format(filename, counter,
+                                                      t_iter - t_init))
             p = gp.copy()
             for i in self.data:
                 gp[i[1] - 1] += alpha * p[i[0] - 1] / self.k_out[i[0]]
@@ -141,6 +140,6 @@ class NetworkTask2:
         dtype = [('node', 'int'), ('rank', 'int')]
         k = np.array(k, dtype=dtype)
 
-        np.savetxt(filename + "_out.dat", k, fmt='%i')
+        np.savetxt("data_out/" + filename + "_out.dat", k, fmt='%i')
 
         return k
