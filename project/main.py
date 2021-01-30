@@ -48,8 +48,8 @@ else:
                 general_log.write(data.log)
                 logfile.write(data.log)
                 t_end = time.time()
-                end_string = "\nComputation ended for {}. " \
-                             "Time elapsed: {:.4} s".format(f, t_end - t_start)
+                end_string = "\nComputation ended for {}. Time " \
+                             "elapsed: {:.4f} s".format(f, t_end - t_start)
                 print(end_string)
                 general_log.write(end_string)
                 logfile.write(end_string)
