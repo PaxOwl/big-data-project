@@ -1,0 +1,170 @@
+Starting computations at 08:10
+
+Started computation for arwiki
+Data loaded in 9.4202 s
+k_out built in 278.0485 ms
+Dangling nodes array built in 37.0069 ms
+Steady state probability array built in 378.2904 s, 95 iterations
+Array sorted in 258.5447 ms
+Computation ended for arwiki. Time elapsed: 388.7902 s
+Started computation for dawiki
+Data loaded in 15.6998 s
+k_out built in 451.0796 ms
+Dangling nodes array built in 33.0052 ms
+Steady state probability array built in 554.9004 s, 96 iterations
+Array sorted in 204.5367 ms
+Computation ended for dawiki. Time elapsed: 571.7102 s
+Started computation for dewiki
+Data loaded in 199.7941 s
+k_out built in 5444.4556 ms
+Dangling nodes array built in 281.0497 ms
+Steady state probability array built in 5548.4152 s, 73 iterations
+Array sorted in 1998.8518 ms
+Computation ended for dewiki. Time elapsed: 5759.6158 s
+Started computation for elwiki
+Data loaded in 6.6890 s
+k_out built in 196.0347 ms
+Dangling nodes array built in 15.0023 ms
+Steady state probability array built in 222.4050 s, 88 iterations
+Array sorted in 95.0160 ms
+Computation ended for elwiki. Time elapsed: 229.6672 s
+Started computation for enwiki
+Data loaded in 714.0053 s
+k_out built in 15126.6544 ms
+Dangling nodes array built in 799.1402 ms
+Steady state probability array built in 15848.4088 s, 73 iterations
+Array sorted in 5856.0274 ms
+Computation ended for enwiki. Time elapsed: 16594.5232 s
+Started computation for eswiki
+Data loaded in 123.6837 s
+k_out built in 3424.1011 ms
+Dangling nodes array built in 182.0321 ms
+Steady state probability array built in 3107.3913 s, 71 iterations
+Array sorted in 1289.2265 ms
+Computation ended for eswiki. Time elapsed: 3238.5199 s
+Started computation for fawiki
+Data loaded in 13.2406 s
+k_out built in 388.5684 ms
+Dangling nodes array built in 55.5100 ms
+Steady state probability array built in 539.6497 s, 102 iterations
+Array sorted in 407.0714 ms
+Computation ended for fawiki. Time elapsed: 554.5136 s
+Started computation for frwiki
+Data loaded in 198.5263 s
+k_out built in 5108.8963 ms
+Dangling nodes array built in 255.0452 ms
+Steady state probability array built in 4662.7738 s, 69 iterations
+Array sorted in 1798.3155 ms
+Computation ended for frwiki. Time elapsed: 4871.7609 s
+Started computation for hewiki
+Data loaded in 25.5916 s
+k_out built in 737.6294 ms
+Dangling nodes array built in 28.0051 ms
+Steady state probability array built in 668.8729 s, 71 iterations
+Array sorted in 173.5299 ms
+Computation ended for hewiki. Time elapsed: 695.8381 s
+Started computation for hiwiki
+Data loaded in 3.4788 s
+k_out built in 103.5175 ms
+Dangling nodes array built in 18.0037 ms
+Steady state probability array built in 200.1656 s, 138 iterations
+Array sorted in 126.0221 ms
+Computation ended for hiwiki. Time elapsed: 204.1305 s
+Started computation for huwiki
+Data loaded in 28.0427 s
+k_out built in 811.6424 ms
+Dangling nodes array built in 44.0073 ms
+Steady state probability array built in 828.4099 s, 79 iterations
+Array sorted in 293.0508 ms
+Computation ended for huwiki. Time elapsed: 858.1759 s
+Started computation for itwiki
+Data loaded in 142.7545 s
+k_out built in 3835.1731 ms
+Dangling nodes array built in 193.5337 ms
+Steady state probability array built in 3773.1512 s, 76 iterations
+Array sorted in 1339.7350 ms
+Computation ended for itwiki. Time elapsed: 3923.8291 s
+Started computation for jawiki
+Data loaded in 176.2946 s
+k_out built in 4745.8327 ms
+Dangling nodes array built in 163.0278 ms
+Steady state probability array built in 3827.4687 s, 63 iterations
+Array sorted in 1090.6913 ms
+Computation ended for jawiki. Time elapsed: 4011.8857 s
+Started computation for kowiki
+Data loaded in 19.9551 s
+k_out built in 591.1036 ms
+Dangling nodes array built in 43.5078 ms
+Steady state probability array built in 782.9869 s, 101 iterations
+Array sorted in 281.5495 ms
+Computation ended for kowiki. Time elapsed: 804.4523 s
+Started computation for mswiki
+Data loaded in 11.6612 s
+k_out built in 345.5603 ms
+Dangling nodes array built in 34.5049 ms
+Steady state probability array built in 416.9787 s, 95 iterations
+Array sorted in 239.0416 ms
+Computation ended for mswiki. Time elapsed: 429.7076 s
+Started computation for nlwiki
+Data loaded in 84.8567 s
+k_out built in 2391.4185 ms
+Dangling nodes array built in 217.5379 ms
+Steady state probability array built in 2397.8058 s, 79 iterations
+Array sorted in 1586.7794 ms
+Computation ended for nlwiki. Time elapsed: 2489.6442 s
+Started computation for plwiki
+Data loaded in 94.6621 s
+k_out built in 2660.4662 ms
+Dangling nodes array built in 178.5309 ms
+Steady state probability array built in 2730.5522 s, 82 iterations
+Array sorted in 1258.7211 ms
+Computation ended for plwiki. Time elapsed: 2831.6959 s
+Started computation for ptwiki
+Data loaded in 70.5464 s
+k_out built in 1990.8497 ms
+Dangling nodes array built in 142.5252 ms
+Steady state probability array built in 2346.9709 s, 91 iterations
+Array sorted in 1019.6788 ms
+Computation ended for ptwiki. Time elapsed: 2422.5931 s
+Started computation for ruwiki
+Data loaded in 111.6030 s
+k_out built in 3096.0436 ms
+Dangling nodes array built in 181.0324 ms
+Steady state probability array built in 2828.6454 s, 71 iterations
+Array sorted in 1254.2200 ms
+Computation ended for ruwiki. Time elapsed: 2947.1581 s
+Started computation for svwiki
+Data loaded in 80.3321 s
+k_out built in 2357.4133 ms
+Dangling nodes array built in 147.0256 ms
+Steady state probability array built in 2372.0893 s, 81 iterations
+Array sorted in 1019.1793 ms
+Computation ended for svwiki. Time elapsed: 2457.8839 s
+Started computation for thwiki
+Data loaded in 10.2327 s
+k_out built in 192.0338 ms
+Dangling nodes array built in 14.5023 ms
+Steady state probability array built in 253.5745 s, 109 iterations
+Array sorted in 93.5154 ms
+Computation ended for thwiki. Time elapsed: 264.3717 s
+Started computation for trwiki
+Data loaded in 16.4886 s
+k_out built in 481.0848 ms
+Dangling nodes array built in 38.5063 ms
+Steady state probability array built in 578.8386 s, 93 iterations
+Array sorted in 260.0451 ms
+Computation ended for trwiki. Time elapsed: 596.6034 s
+Started computation for viwiki
+Data loaded in 27.0866 s
+k_out built in 778.1351 ms
+Dangling nodes array built in 110.0187 ms
+Steady state probability array built in 1244.8920 s, 107 iterations
+Array sorted in 946.6655 ms
+Computation ended for viwiki. Time elapsed: 1275.4791 s
+Started computation for zhwiki
+Data loaded in 62.3849 s
+k_out built in 1739.8052 ms
+Dangling nodes array built in 137.5241 ms
+Steady state probability array built in 1615.6070 s, 68 iterations
+Array sorted in 1031.1806 ms
+Computation ended for zhwiki. Time elapsed: 1682.7378 sComputations ended at 00:52

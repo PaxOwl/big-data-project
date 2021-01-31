@@ -1,0 +1,7 @@
+Started computation for eswiki
+Data loaded in 123.6837 s
+k_out built in 3424.1011 ms
+Dangling nodes array built in 182.0321 ms
+Steady state probability array built in 3107.3913 s, 71 iterations
+Array sorted in 1289.2265 ms
+Computation ended for eswiki. Time elapsed: 3238.5199 s

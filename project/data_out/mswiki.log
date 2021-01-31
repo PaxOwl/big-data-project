@@ -1,0 +1,7 @@
+Started computation for mswiki
+Data loaded in 11.6612 s
+k_out built in 345.5603 ms
+Dangling nodes array built in 34.5049 ms
+Steady state probability array built in 416.9787 s, 95 iterations
+Array sorted in 239.0416 ms
+Computation ended for mswiki. Time elapsed: 429.7076 s

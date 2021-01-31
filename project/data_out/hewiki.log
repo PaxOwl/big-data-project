@@ -1,0 +1,7 @@
+Started computation for hewiki
+Data loaded in 25.5916 s
+k_out built in 737.6294 ms
+Dangling nodes array built in 28.0051 ms
+Steady state probability array built in 668.8729 s, 71 iterations
+Array sorted in 173.5299 ms
+Computation ended for hewiki. Time elapsed: 695.8381 s

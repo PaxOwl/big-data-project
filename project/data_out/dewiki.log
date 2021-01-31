@@ -1,0 +1,7 @@
+Started computation for dewiki
+Data loaded in 199.7941 s
+k_out built in 5444.4556 ms
+Dangling nodes array built in 281.0497 ms
+Steady state probability array built in 5548.4152 s, 73 iterations
+Array sorted in 1998.8518 ms
+Computation ended for dewiki. Time elapsed: 5759.6158 s

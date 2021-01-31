@@ -1,0 +1,7 @@
+Started computation for frwiki
+Data loaded in 198.5263 s
+k_out built in 5108.8963 ms
+Dangling nodes array built in 255.0452 ms
+Steady state probability array built in 4662.7738 s, 69 iterations
+Array sorted in 1798.3155 ms
+Computation ended for frwiki. Time elapsed: 4871.7609 s

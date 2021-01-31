@@ -1,0 +1,7 @@
+Started computation for ruwiki
+Data loaded in 111.6030 s
+k_out built in 3096.0436 ms
+Dangling nodes array built in 181.0324 ms
+Steady state probability array built in 2828.6454 s, 71 iterations
+Array sorted in 1254.2200 ms
+Computation ended for ruwiki. Time elapsed: 2947.1581 s

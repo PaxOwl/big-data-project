@@ -1,0 +1,7 @@
+Started computation for nlwiki
+Data loaded in 84.8567 s
+k_out built in 2391.4185 ms
+Dangling nodes array built in 217.5379 ms
+Steady state probability array built in 2397.8058 s, 79 iterations
+Array sorted in 1586.7794 ms
+Computation ended for nlwiki. Time elapsed: 2489.6442 s

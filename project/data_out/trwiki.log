@@ -1,0 +1,7 @@
+Started computation for trwiki
+Data loaded in 16.4886 s
+k_out built in 481.0848 ms
+Dangling nodes array built in 38.5063 ms
+Steady state probability array built in 578.8386 s, 93 iterations
+Array sorted in 260.0451 ms
+Computation ended for trwiki. Time elapsed: 596.6034 s

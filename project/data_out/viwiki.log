@@ -1,0 +1,7 @@
+Started computation for viwiki
+Data loaded in 27.0866 s
+k_out built in 778.1351 ms
+Dangling nodes array built in 110.0187 ms
+Steady state probability array built in 1244.8920 s, 107 iterations
+Array sorted in 946.6655 ms
+Computation ended for viwiki. Time elapsed: 1275.4791 s

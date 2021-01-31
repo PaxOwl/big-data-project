@@ -1,0 +1,7 @@
+Started computation for ptwiki
+Data loaded in 70.5464 s
+k_out built in 1990.8497 ms
+Dangling nodes array built in 142.5252 ms
+Steady state probability array built in 2346.9709 s, 91 iterations
+Array sorted in 1019.6788 ms
+Computation ended for ptwiki. Time elapsed: 2422.5931 s

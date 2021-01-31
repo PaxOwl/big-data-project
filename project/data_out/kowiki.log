@@ -1,0 +1,7 @@
+Started computation for kowiki
+Data loaded in 19.9551 s
+k_out built in 591.1036 ms
+Dangling nodes array built in 43.5078 ms
+Steady state probability array built in 782.9869 s, 101 iterations
+Array sorted in 281.5495 ms
+Computation ended for kowiki. Time elapsed: 804.4523 s

@@ -1,0 +1,7 @@
+Started computation for plwiki
+Data loaded in 94.6621 s
+k_out built in 2660.4662 ms
+Dangling nodes array built in 178.5309 ms
+Steady state probability array built in 2730.5522 s, 82 iterations
+Array sorted in 1258.7211 ms
+Computation ended for plwiki. Time elapsed: 2831.6959 s

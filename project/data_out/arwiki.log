@@ -1,0 +1,7 @@
+Started computation for arwiki
+Data loaded in 9.4202 s
+k_out built in 278.0485 ms
+Dangling nodes array built in 37.0069 ms
+Steady state probability array built in 378.2904 s, 95 iterations
+Array sorted in 258.5447 ms
+Computation ended for arwiki. Time elapsed: 388.7902 s

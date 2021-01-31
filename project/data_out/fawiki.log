@@ -1,0 +1,7 @@
+Started computation for fawiki
+Data loaded in 13.2406 s
+k_out built in 388.5684 ms
+Dangling nodes array built in 55.5100 ms
+Steady state probability array built in 539.6497 s, 102 iterations
+Array sorted in 407.0714 ms
+Computation ended for fawiki. Time elapsed: 554.5136 s

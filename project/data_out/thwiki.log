@@ -1,0 +1,7 @@
+Started computation for thwiki
+Data loaded in 10.2327 s
+k_out built in 192.0338 ms
+Dangling nodes array built in 14.5023 ms
+Steady state probability array built in 253.5745 s, 109 iterations
+Array sorted in 93.5154 ms
+Computation ended for thwiki. Time elapsed: 264.3717 s

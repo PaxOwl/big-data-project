@@ -1,0 +1,7 @@
+Started computation for svwiki
+Data loaded in 80.3321 s
+k_out built in 2357.4133 ms
+Dangling nodes array built in 147.0256 ms
+Steady state probability array built in 2372.0893 s, 81 iterations
+Array sorted in 1019.1793 ms
+Computation ended for svwiki. Time elapsed: 2457.8839 s

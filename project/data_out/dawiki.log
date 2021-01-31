@@ -1,0 +1,7 @@
+Started computation for dawiki
+Data loaded in 15.6998 s
+k_out built in 451.0796 ms
+Dangling nodes array built in 33.0052 ms
+Steady state probability array built in 554.9004 s, 96 iterations
+Array sorted in 204.5367 ms
+Computation ended for dawiki. Time elapsed: 571.7102 s

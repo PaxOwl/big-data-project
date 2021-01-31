@@ -1,0 +1,7 @@
+Started computation for hiwiki
+Data loaded in 3.4788 s
+k_out built in 103.5175 ms
+Dangling nodes array built in 18.0037 ms
+Steady state probability array built in 200.1656 s, 138 iterations
+Array sorted in 126.0221 ms
+Computation ended for hiwiki. Time elapsed: 204.1305 s

@@ -1,0 +1,7 @@
+Started computation for elwiki
+Data loaded in 6.6890 s
+k_out built in 196.0347 ms
+Dangling nodes array built in 15.0023 ms
+Steady state probability array built in 222.4050 s, 88 iterations
+Array sorted in 95.0160 ms
+Computation ended for elwiki. Time elapsed: 229.6672 s

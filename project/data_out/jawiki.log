@@ -1,0 +1,7 @@
+Started computation for jawiki
+Data loaded in 176.2946 s
+k_out built in 4745.8327 ms
+Dangling nodes array built in 163.0278 ms
+Steady state probability array built in 3827.4687 s, 63 iterations
+Array sorted in 1090.6913 ms
+Computation ended for jawiki. Time elapsed: 4011.8857 s

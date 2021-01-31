@@ -1,0 +1,7 @@
+Started computation for huwiki
+Data loaded in 28.0427 s
+k_out built in 811.6424 ms
+Dangling nodes array built in 44.0073 ms
+Steady state probability array built in 828.4099 s, 79 iterations
+Array sorted in 293.0508 ms
+Computation ended for huwiki. Time elapsed: 858.1759 s

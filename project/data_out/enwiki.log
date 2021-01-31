@@ -1,0 +1,7 @@
+Started computation for enwiki
+Data loaded in 714.0053 s
+k_out built in 15126.6544 ms
+Dangling nodes array built in 799.1402 ms
+Steady state probability array built in 15848.4088 s, 73 iterations
+Array sorted in 5856.0274 ms
+Computation ended for enwiki. Time elapsed: 16594.5232 s
